@@ -1,0 +1,120 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #fdfbfb, #ebedee);
+    color: #333;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container {
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+.main-heading {
+    text-align: center;
+    font-size: 2.7rem;
+    color: #007BFF;
+    margin-bottom: 25px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.stats h3 {
+    font-size: 1.1rem;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.shortlisted-count {
+    color: #155724;
+    background-color: #d4edda;
+}
+
+.rejected-count {
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
+.total-count {
+    color: #0c5460;
+    background-color: #d1ecf1;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+textarea,
+input[type="file"],
+input[type="number"] {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #de16c0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-size: 1.1rem;
+}
+
+.shortlisted {
+    background-color: #e8f5e9;
+}
+
+.rejected {
+    background-color: #fdecea;
+}

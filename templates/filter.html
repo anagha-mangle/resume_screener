@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-heading">Filter ATS Results</h1>
+
+        <!-- Filter Form -->
+        <form method="POST">
+            <label>Min ATS Score:</label>
+            <input type="number" name="min_score" step="0.1" value="{{ min_score }}" required>
+
+            <label>Max ATS Score:</label>
+            <input type="number" name="max_score" step="0.1" value="{{ max_score }}" required>
+
+            <button type="submit">Apply Filter</button>
+        </form>
+
+        {% if filtered_results %}
+            <h2>Filtered Results</h2>
+            <table>
+                <tr>
+                    <th>Filename</th>
+                    <th>Resume</th>
+                    <th>ATS Score (%)</th>
+                    <th>Status</th>
+                </tr>
+                {% for result in filtered_results %}
+                    <tr class="{{ 'shortlisted' if result.status == 'Shortlisted' else 'rejected' }}">
+                        <td>{{ result.filename }}</td>
+                        <td><a href="{{ url_for('static', filename='uploads/' + result.filename) }}" target="_blank">📄</a></td>
+                        <td>{{ result.score }}</td>
+                        <td>{{ result.status }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>

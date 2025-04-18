@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATS Resume Screener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-heading">📄 ATS Resume Screener</h1>
+
+        <!-- Job Description and Resume Upload Form -->
+        <form method="POST" enctype="multipart/form-data">
+            <label>Paste Job Description:</label>
+            <textarea name="job_description" rows="6" required>{{ job_description }}</textarea>
+
+            <label>Upload Resumes (PDF/DOCX):</label>
+            <input type="file" name="resumes" multiple accept=".pdf,.doc,.docx" required>
+
+            <button type="submit">Calculate ATS Scores</button>
+        </form>
+
+        <!-- Display Results Table -->
+        {% if results %}
+            <h2>Results</h2>
+            <table>
+                <tr>
+                    <th>Filename</th>
+                    <th>Resume</th>
+                    <th>ATS Score (%)</th>
+                    <th>Status</th>
+                </tr>
+                {% for result in results %}
+                    <tr class="{{ 'shortlisted' if result.status == 'Shortlisted' else 'rejected' }}">
+                        <td>{{ result.filename }}</td>
+                        <td><a href="{{ url_for('static', filename='uploads/' + result.filename) }}" target="_blank">📄</a></td>
+                        <td>{{ result.score }}</td>
+                        <td>{{ result.status }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <!-- Stats Section -->
+            <div class="stats">
+                <h3 class="shortlisted-count">Shortlisted Resumes: {{ shortlisted_count }}</h3>
+                <h3 class="rejected-count">Rejected Resumes: {{ rejected_count }}</h3>
+                <h3 class="total-count">Total Applicants: {{ total_applicants }}</h3>
+            </div>
+
+            <!-- Filter Button -->
+            <form action="{{ url_for('filter_results') }}" method="get">
+                <button type="submit">Filter ATS Score</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
